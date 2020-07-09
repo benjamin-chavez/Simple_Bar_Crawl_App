@@ -3,7 +3,6 @@ class Google {
     this.api_key = 'AIzaSyBUrUo_JNTg3i--xAS-Cc7xtC61lbLFtK0'
   }
 
-
   async getBars(location) {
     const response = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=bar+${location}+canada&key=${this.api_key}`, { 
       mode: 'cors',
@@ -20,7 +19,41 @@ class Google {
 
     return responseData
   };
+
+  initMap(markers) {
+    // Map Options
+    var options = {
+      zoom:9,
+      center: {lat:41.8781,lng:-87.6298}
+    }
+  
+    // New Map
+    var map = new google.maps.Map(document.getElementById('map'), options);
+  
+    // Loop through markers
+    for(var i = 0; i< markers.length;i++){
+      // Add Marker 
+      addMarker(markers[i]);
+    }
+  
+    // Add Marker Function
+    function addMarker(props) {
+      var marker = new google.maps.Marker({
+        position: props.coords,
+        map: map,
+      });
+  
+      // Check for content
+      if(props.content){
+        var infoWindow = new google.maps.InfoWindow({
+          content: props.content
+        });
+  
+        marker.addListener('click', function(){
+          infoWindow.open(map, marker);
+        });
+      }
+    }
+  }
 }
-
-
 
