@@ -22,9 +22,12 @@ class Google {
 
   initMap(markers) {
     // Map Options
+    var jsonStyle = getJson();
+    
     var options = {
       zoom:9,
-      center: {lat:41.8781,lng:-87.6298}
+      center: {lat:41.8781,lng:-87.6298},
+      styles: jsonStlye
     }
   
     // New Map
@@ -54,6 +57,21 @@ class Google {
         });
       }
     }
+      // GET LOCAL JSON DATA
+      function getJson(){
+        fetch('mapstyle.json')
+          .then(response => {
+            return response.json();
+          }).then(data => {
+            // Work with JSON data here
+            return data
+          }).catch(err => {
+            // Do something for an error here
+          });
+      }
   }
 }
+
+
+
 

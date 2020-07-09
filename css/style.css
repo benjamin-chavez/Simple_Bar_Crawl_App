@@ -1,7 +1,7 @@
 .banner{
   width: 100%;
   min-height: 500px;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+  background: linear-gradient(rgba(23, 38, 60, 0.5), rgba(23, 38, 60, 0.8)),
     url('/images/img2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
